@@ -17,7 +17,8 @@ let commentRoutes 	  = require('./routes/comments'),
 	authRoutes  	  = require('./routes/auth')
 
 // mongoose.connect('mongodb://localhost:27017/yelp_camp_11', {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect('mongodb+srv://pewientaki:yallayalla@cluster0-pzztc.azure.mongodb.net/test?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://pewientaki:yalla@cluster0-pzztc.mongodb.net/test?retryWrites=true&w=majority',
+
  {useNewUrlParser: true, useUnifiedTopology: true})
 mongoose.set('useFindAndModify', false);
 app.use(bodyParser.urlencoded({extended: true}));
@@ -52,7 +53,7 @@ app.use('/campgrounds/:id/comments', commentRoutes);
 app.use('/campgrounds', campgroundsRoutes);
 
 // app.listen(3000, function(){console.log("YelpCamp server v11 has started!")});
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8080heroku config:get MONGODB_URI;
 
 var server=app.listen(port,function() {
 	console.log("app running on port 8080"); });
