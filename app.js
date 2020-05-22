@@ -53,7 +53,7 @@ app.use('/campgrounds/:id/comments', commentRoutes);
 app.use('/campgrounds', campgroundsRoutes);
 
 // app.listen(3000, function(){console.log("YelpCamp server v11 has started!")});
-var port = process.env.PORT || 8080heroku config:get MONGODB_URI;
+var port = process.env.PORT || 8080;
 
 var server=app.listen(port,function() {
 	console.log("app running on port 8080"); });
