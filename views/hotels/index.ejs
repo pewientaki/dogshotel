@@ -4,26 +4,26 @@
 <header class='jumbotron'>
 	<div class='container'>
 
-	<h1>Welcome to YelpCamp!</h1>
+	<h1>Welcome to Happy Paw's Hotels!</h1>
 	<p>
-		View our hand-picked campgrounds from all over the world
+		Because too much.. is never enough.
 	</p>
 	<p>
-		<a class='btn btn-primary btn-lg' href='/campgrounds/new'>Add new Campground!</a>
+		<a class='btn btn-primary btn-lg' href='/hotels/new'>Add new hotel!</a>
 	</p>		
 	</div>
 </header>
 	
 	<div class='row text-center' style='display: flex; flex-wrap: wrap;'>	
-		<% campgrounds.forEach(function(campground){ %>
+		<% hotels.forEach(function(hotel){ %>
 		<div class='col-md-3 col-sm-6'>
 			<div class='thumbnail'>
-				<img src='<%= campground.image %>'>
+				<img src='<%= hotel.image %>'>
 				<div class='caption'>
-					<h4> <%= campground.name %> </h4>
+					<h4> <%= hotel.name %> </h4>
 				</div>
 				<p>
-					<a href='/campgrounds/<%= campground._id %>' class='btn btn-primary'>More Info</a>
+					<a href='/hotels/<%= hotel._id %>' class='btn btn-primary'>More Info</a>
 				</p>
 			</div>
 		</div>
