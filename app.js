@@ -9,18 +9,15 @@ let methodOverride = require('method-override');
 let Hotel = require('./models/hotel');
 let Comment = require('./models/comment');
 let User = require('./models/user');
-// let seedDB = require('./seeds');
 
 // requiring routes
 let commentRoutes = require('./routes/comments'),
 	hotelsRoutes = require('./routes/hotels'),
 	authRoutes = require('./routes/auth')
 
-// mongoose.connect('mongodb://localhost:27017/dogs_hotel_v1', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect('mongodb+srv://krystian:pleasedonttouch@dogshotel.wramt.mongodb.net/dogshotel?retryWrites=true&w=majority',
 	{ useNewUrlParser: true, useUnifiedTopology: true })
 
-// mongoose.connect('mongodb+srv://pewientaki:yalla@cluster0-pzztc.mongodb.net/test?retryWrites=true&w=majority',
 
 mongoose.set('useFindAndModify', false);
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -54,7 +51,6 @@ app.use(authRoutes);
 app.use('/hotels/:id/comments', commentRoutes);
 app.use('/hotels', hotelsRoutes);
 
-// app.listen(3000, function(){console.log("YelpCamp server v11 has started!")});
 var port = process.env.PORT || 8080;
 
 var server = app.listen(port, function () {
