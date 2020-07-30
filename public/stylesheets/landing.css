@@ -40,7 +40,7 @@ body{
   }
 
   .slideshow li:nth-child(1) { 
-    background-image: url(https://i.imgur.com/cAzbYYz.jpg) 
+    background-image: url(https://i.imgur.com/HCtGtwo.jpg);
   }
   .slideshow li:nth-child(2) { 
     background-image: url(https://i.imgur.com/1IBbTsG.jpg);
@@ -55,7 +55,7 @@ body{
     animation-delay: 30s; 
   }
   .slideshow li:nth-child(5) { 
-    background-image: url(https://i.imgur.com/HCtGtwo.jpg);
+    background-image: url(https://i.imgur.com/cAzbYYz.jpg);
     animation-delay: 40s; 
   }
 
