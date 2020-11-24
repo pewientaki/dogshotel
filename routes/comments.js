@@ -70,7 +70,7 @@ router.put('/:comment_id', middleware.checkCommentOwnership, function(req, res) 
 
 //DESTROY comment route
 router.delete('/:comment_id', middleware.checkCommentOwnership, function(req, res) {
-	Comment.findOneAndRemove(req.params.comment_id, function(err) {
+	Comment.findByIdAndRemove(req.params.comment_id, function(err) {
 		if (err) {
 			console.log(err);
 			res.redirect('back');
