@@ -18,7 +18,7 @@ router.post('/register', function(req, res) {
 			return res.render('register');
 		}
 		passport.authenticate('local')(req, res, function() {
-			req.flash('success', 'Welcome to YelpCamp, ' + user.username);
+			req.flash('success', 'Welcome to Happy Paws Hotels, ' + user.username);
 			res.redirect('/hotels');
 		});
 	});

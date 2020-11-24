@@ -59,7 +59,8 @@ router.get('/:id', function(req, res) {
 // EDIT hotel route
 router.get('/:id/edit', middleware.checkHotelsOwnership, function(req, res) {
 	Hotel.findById(req.params.id, function(err, foundHotel) {
-		res.render('hotels/edit', { hotel: foundHotel }); //pass hotel found by ID
+		//pass hotel data found by ID
+		res.render('hotels/edit', { hotel: foundHotel }); 
 	});
 });
 
