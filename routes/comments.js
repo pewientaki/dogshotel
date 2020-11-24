@@ -1,32 +1,31 @@
-let express = require('express'),
+const express = require('express'),
 	router = express.Router({ mergeParams: true }),
 	Hotel = require('../models/hotel'),
-	Comment = require('../models/comment');
-middleware = require('../middleware');
-
+	Comment = require('../models/comment'),
+	middleware = require('../middleware');
 
 // NEW - show the form
-router.get('/new', middleware.isLoggedIn, function (req, res) {
+router.get('/new', middleware.isLoggedIn, function(req, res) {
 	// find campg by id
-	Hotel.findById(req.params.id, function (err, hotel) {
+	Hotel.findById(req.params.id, function(err, hotel) {
 		if (err) {
 			console.log(err);
 		} else {
 			res.render('comments/new', { hotel: hotel });
 		}
 	});
-})
+});
 
 // CREATE - add a new comment to the DB
-router.post('/', middleware.isLoggedIn, function (req, res) {
+router.post('/', middleware.isLoggedIn, function(req, res) {
 	// find camp by ID
-	Hotel.findById(req.params.id, function (err, hotel) {
+	Hotel.findById(req.params.id, function(err, hotel) {
 		if (err) {
 			console.log(err);
 		} else {
-			Comment.create(req.body.comment, function (err, comment) {
+			Comment.create(req.body.comment, function(err, comment) {
 				if (err) {
-					req.flash('error', 'Something went wrong..')
+					req.flash('error', 'Something went wrong.. :(');
 					console.log(err);
 				} else {
 					//add username and id to comment
@@ -37,29 +36,29 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
 
 					hotel.comments.push(comment);
 					hotel.save();
-					req.flash('success', 'Successfully added comment')
+					req.flash('success', 'Your comment has been added, thank you!');
 					res.redirect('/hotels/' + hotel._id);
 				}
 			});
 		}
-	})
+	});
 });
 
 // EDIT - show the edit template
-router.get('/:comment_id/edit', middleware.checkCommentOwnership, function (req, res) {
-	Comment.findById(req.params.comment_id, function (err, foundComment) {
+router.get('/:comment_id/edit', middleware.checkCommentOwnership, function(req, res) {
+	Comment.findById(req.params.comment_id, function(err, foundComment) {
 		if (err) {
+			req.flash('error', 'Something went wrong.. :(');
 			res.redirect('back');
 		} else {
 			res.render('comments/edit', { hotel_id: req.params.id, comment: foundComment });
-
 		}
 	});
 });
 
 // UPDATE - change the comment
-router.put('/:comment_id', middleware.checkCommentOwnership, function (req, res) {
-	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function (err, updatedComment) {
+router.put('/:comment_id', middleware.checkCommentOwnership, function(req, res) {
+	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment) {
 		if (err) {
 			res.redirect('back');
 		} else {
@@ -69,12 +68,12 @@ router.put('/:comment_id', middleware.checkCommentOwnership, function (req, res)
 });
 
 //DESTROY comment route
-router.delete('/:comment_id', middleware.checkCommentOwnership, function (req, res) {
-	Comment.findOneAndRemove(req.params.comment_id, function (err) {
+router.delete('/:comment_id', middleware.checkCommentOwnership, function(req, res) {
+	Comment.findOneAndRemove(req.params.comment_id, function(err) {
 		if (err) {
 			res.redirect('back');
 		} else {
-			req.flash('success', 'Comment deleted')
+			req.flash('success', 'Your comment has been removed!');
 			res.redirect('/hotels/' + req.params.id);
 		}
 	});
